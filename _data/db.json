@@ -22,32 +22,11 @@
       "user_email": "peach@netninja.dev"
     },
     {
-      "title": "my new ticket",
-      "body": "testing",
-      "priority": "low",
-      "user_email": "mario@netninja.dev",
-      "id": "oGaIgpJ"
-    },
-    {
-      "title": "another new ticket",
-      "body": "akfnsdgfsdg",
+      "title": "this is a new ticket",
+      "body": "blah blah blah",
       "priority": "medium",
       "user_email": "mario@netninja.dev",
-      "id": "VN5aBU5"
-    },
-    {
-      "title": "dgdfg",
-      "body": "fdgdf",
-      "priority": "medium",
-      "user_email": "mario@netninja.dev",
-      "id": "9GskE2P"
-    },
-    {
-      "title": "dfgdfgdf",
-      "body": "gdfgfd",
-      "priority": "medium",
-      "user_email": "mario@netninja.dev",
-      "id": "dws3QPH"
+      "id": "14YV5tk"
     }
   ]
 }
