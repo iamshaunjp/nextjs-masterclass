@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Logo from './dojo-logo.png'
 
-export default function Navbar({ user }) {
+export default function Navbar() {
   return (
     <nav>
       <Image
@@ -14,8 +14,7 @@ export default function Navbar({ user }) {
       />
       <h1>Dojo Helpdesk</h1>
       <Link href="/">Dashboard</Link>
-      <Link href="/tickets" className="mr-auto">Tickets</Link>
-      {user && <span>Hello, {user.email}</span>}
+      <Link href="/tickets">Tickets</Link>
     </nav>
   )
 }
