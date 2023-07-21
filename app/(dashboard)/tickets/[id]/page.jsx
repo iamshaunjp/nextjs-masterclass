@@ -14,9 +14,9 @@ export async function generateMetadata({ params }) {
     .select()
     .eq('id', params.id)
     .single()
- 
+
   return {
-    title: `Dojo Helpdesk | ${ticket.title}`
+    title: `Dojo Helpdesk | ${ticket?.title || 'Ticket not Found'}`
   }
 }
 
