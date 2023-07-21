@@ -1,45 +1,38 @@
-import { notFound } from "next/navigation"
+import { notFound } from 'next/navigation'
+import { cookies } from 'next/headers'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
-export const dynamicParams = true // default val = true
+export const dynamicParams = true
 
 export async function generateMetadata({ params }) {
-  const id = params.id
+  const supabase = createServerComponentClient({ cookies })
 
-  const res = await fetch(`http://localhost:4000/tickets/${id}`)
-  const ticket = await res.json()
+  const { data: ticket } = await supabase.from('tickets')
+    .select()
+    .eq('id', params.id)
+    .single()
  
   return {
     title: `Dojo Helpdesk | ${ticket.title}`
   }
 }
 
-// export async function generateStaticParams() {
-//   const res = await fetch('http://localhost:4000/tickets')
-
-//   const tickets = await res.json()
- 
-//   return tickets.map((ticket) => ({
-//     id: ticket.id
-//   }))
-// }
-
 async function getTicket(id) {
-  const res = await fetch(`http://localhost:4000/tickets/${id}`, {
-    next: {
-      revalidate: 60
+  const supabase = createServerComponentClient({ cookies })
+
+  const { data } = await supabase.from('tickets')
+    .select()
+    .eq('id', id)
+    .single()
+
+    if (!data) {
+      notFound()
     }
-  })
-
-  if (!res.ok) {
-    notFound()
-  }
-
-  return res.json()
+  
+    return data
 }
 
-
 export default async function TicketDetails({ params }) {
-  // const id = params.id
   const ticket = await getTicket(params.id)
 
   return (
