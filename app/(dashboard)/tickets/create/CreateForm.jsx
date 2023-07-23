@@ -1,7 +1,7 @@
 "use client"
-
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { addTicket } from "../actions"
 
 export default function CreateForm() {
   const router = useRouter()
@@ -15,7 +15,7 @@ export default function CreateForm() {
     e.preventDefault()
     setIsLoading(true)
 
-    const newTicket = { title, body, priority, user_email: 'mario@netninja.dev' }
+    const newTicket = { title, body, priority }
 
     const res = await fetch('http://localhost:3000/api/tickets', {
       method: "POST",
@@ -35,7 +35,7 @@ export default function CreateForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-1/2">
+    <form action={addTicket} className="w-1/2">
       <label>
         <span>Title:</span>
         <input
@@ -43,14 +43,16 @@ export default function CreateForm() {
           type="text"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
+          name="title"
         />
       </label>
       <label>
-        <span>Title:</span>
+        <span>Body:</span>
         <textarea
           required
           onChange={(e) => setBody(e.target.value)}
           value={body}
+          name="body"
         />
       </label>
       <label>
@@ -58,6 +60,7 @@ export default function CreateForm() {
         <select 
           onChange={(e) => setPriority(e.target.value)}
           value={priority}
+          name="priority"
         >
           <option value="low">Low Priority</option>
           <option value="medium">Medium Priority</option>
@@ -66,7 +69,6 @@ export default function CreateForm() {
       </label>
       <button 
         className="btn-primary" 
-        onClick={handleSubmit}
         disabled={isLoading}
       >
       {isLoading && <span>Adding...</span>}
