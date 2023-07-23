@@ -66,7 +66,6 @@ export default function CreateForm() {
       </label>
       <button 
         className="btn-primary" 
-        onClick={handleSubmit}
         disabled={isLoading}
       >
       {isLoading && <span>Adding...</span>}
