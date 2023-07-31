@@ -9,7 +9,7 @@ export default function Login() {
 
     console.log(email, password)
   }
-[]
+
   return (
     <main>
       <h2 className="text-center">Login</h2>
